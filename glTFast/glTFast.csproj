@@ -1,0 +1,79 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <AssemblyName>com.unity.cloud.gltfast</AssemblyName>
+        <Product>com.unity.cloud.gltfast</Product>
+        <Version>1.0.0</Version>
+        <DefineConstants>
+            <!--
+            UNITY_X, UNITY_X_Y, UNITY_X_Y_Z Version Defines
+            ATLYSS uses Unity 2021.3.16f1
+            -->UNITY_2021<!--
+            -->UNITY_2021_3<!--
+            -->UNITY_2021_3_16<!--
+            UNITY_X_Y_OR_NEWER Version Defines
+            -->UNITY_2017_1_OR_NEWER;<!--
+            -->UNITY_2017_2_OR_NEWER;<!--
+            -->UNITY_2017_3_OR_NEWER;<!--
+            -->UNITY_2017_4_OR_NEWER;<!--
+            -->UNITY_2018_1_OR_NEWER;<!--
+            -->UNITY_2018_2_OR_NEWER;<!--
+            -->UNITY_2018_3_OR_NEWER;<!--
+            -->UNITY_2018_4_OR_NEWER;<!--
+            -->UNITY_2019_1_OR_NEWER;<!--
+            -->UNITY_2019_2_OR_NEWER;<!--
+            -->UNITY_2019_3_OR_NEWER;<!--
+            -->UNITY_2019_4_OR_NEWER;<!--
+            -->UNITY_2020_1_OR_NEWER;<!--
+            -->UNITY_2020_2_OR_NEWER;<!--
+            -->UNITY_2020_3_OR_NEWER;<!--
+            -->UNITY_2021_3_OR_NEWER;<!--
+            Unity Platform Defines
+            -->UNITY_STANDALONE_WIN;<!--
+            Unity .NET Defines - these aren't the same as MSBuild's predefined symbols
+            -->NET_STANDARD;<!--
+            -->NET_STANDARD_2_1;<!--
+            Unity Components
+            -->UNITY_ANIMATION;<!--
+            -->UNITY_IMAGECONVERSION;<!--
+            -->UNITY_PHYSICS;<!--
+            -->UNITY_WEBREQUEST_TEXTURE;<!--
+            Other Assorted Garbage
+            -->NEWTONSOFT_JSON;<!--
+            -->BURST;<!--
+            -->
+        </DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <RootNamespace>$(AssemblyName)</RootNamespace>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <LangVersion>latest</LangVersion>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+        <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+        <DebugType>embedded</DebugType>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <!-- Collections -->
+        <Compile Include="../submodules/com.unity.collections/Unity.Collections/**/*.cs" />
+        <Compile Include="CreatePropertyAttribute.cs" />
+        <Reference Include="Unity.Collections.LowLevel.ILSupport" Publicize="true">
+            <HintPath>../submodules/com.unity.collections/Unity.Collections.LowLevel.ILSupport/Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+        </Reference>
+
+        <!-- GLTFast -->
+        <Compile Include="../submodules/com.unity.cloud.gltfast/Packages/com.unity.cloud.gltfast/Runtime/**/*.cs" />
+        <Compile Remove="../submodules/com.unity.cloud.gltfast/Packages/com.unity.cloud.gltfast/Runtime/Scripts/UvTransform.cs" />
+        <Compile Include="UvTransform.cs" />
+        <Compile Remove="../submodules/com.unity.cloud.gltfast/Packages/com.unity.cloud.gltfast/Runtime/Scripts/GltfJsonUtilityParser.cs" />
+        <Compile Include="GltfJsonUtilityParser.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="assets\gltfast_burst_generated.dll">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+            <TargetPath>gltfast_burst_generated.dll</TargetPath>
+        </None>
+    </ItemGroup>
+</Project>

@@ -1,0 +1,6 @@
+[submodule "submodules/com.unity.cloud.gltfast"]
+	path = submodules/com.unity.cloud.gltfast
+	url = https://github.com/Unity-Technologies/com.unity.cloud.gltfast
+[submodule "submodules/com.unity.collections"]
+	path = submodules/com.unity.collections
+	url = https://github.com/needle-mirror/com.unity.collections
